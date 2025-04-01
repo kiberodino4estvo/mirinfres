@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Проектирование сетей для предприятия</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="lab1.html">Лабораторная 1</a></li>
+            <li><a href="lab2.html">Лабораторная 2</a></li>
+        </ul>
+    </nav>
+    
+    <div id="login-section" class="login-form">
+        <h2>Вход на сайт</h2>
+        <form id="login-form">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+            
+            <label for="birthday">Дата рождения:</label>
+            <input type="date" id="birthday" required>
+            
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+    
+    <div id="content-section" class="hidden">
+        <div id="user-controls" style="text-align: right; margin-bottom: 10px;">
+            <button id="logout-btn" onclick="logout()">Сменить пользователя</button>
+        </div>
+        
+        <div id="greeting" class="greeting"></div>
+        
+        <div class="marquee">
+            <span>Добро пожаловать на наш сайт! У нас вы найдете всю информацию о проектировании корпоративных сетей. Специальное предложение для новых пользователей!</span>
+        </div>
+        
+        <div class="counter">
+            Посетителей сегодня: <span id="visit-counter">0</span>
+        </div>
+        
+        <div class="main-container">
+            <aside>
+                <h3>Навигация</h3>
+                <ul>
+                    <li><a href="#intro">Введение</a></li>
+                    <li><a href="#methods">Анализ рынка</a></li>
+                    <li><a href="#survey">Опрос</a></li>
+                    <li><a href="#calculator">Калькулятор</a></li>
+                </ul>
+            </aside>
+            <main>
+                <section id="intro">
+                    <h2>Введение</h2>
+                    <p><strong>Проектирование корпоративных сетей</strong> — ключевой этап создания надежной инфраструктуры. <em>Современные сети</em> должны обеспечивать безопасность и масштабируемость.</p>
+                </section>
+                <section id="market">
+                    <h2>Анализ рынка</h2>
+                    <table>
+                        <tr>
+                            <th>Компания</th>
+                            <th>Технология</th>
+                        </tr>
+                        <tr>
+                            <td>Cisco</td>
+                            <td>SDN, Cisco DNA</td>
+                        </tr>
+                        <tr>
+                            <td>Aruba (HPE)</td>
+                            <td>ИИ-аналитика</td>
+                        </tr>
+                    </table>
+                </section>
+                
+                <section id="survey" class="survey">
+                    <h2>Опрос</h2>
+                    <form id="survey-form">
+                        <div class="survey-question">
+                            <p>1. Какой тип сети вас интересует?</p>
+                            <input type="radio" id="lan" name="network-type" value="LAN">
+                            <label for="lan">Локальная сеть (LAN)</label><br>
+                            <input type="radio" id="wan" name="network-type" value="WAN">
+                            <label for="wan">Глобальная сеть (WAN)</label><br>
+                            <input type="radio" id="both" name="network-type" value="both">
+                            <label for="both">Оба варианта</label>
+                        </div>
+                        
+                        <div class="survey-question">
+                            <p>2. Какой размер сети вам нужен?</p>
+                            <select id="network-size" name="network-size">
+                                <option value="small">Малая (до 50 устройств)</option>
+                                <option value="medium">Средняя (50-200 устройств)</option>
+                                <option value="large">Крупная (более 200 устройств)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="survey-question">
+                            <p>3. Какой уровень безопасности вам требуется?</p>
+                            <input type="checkbox" id="firewall" name="security" value="firewall">
+                            <label for="firewall">Фаервол</label><br>
+                            <input type="checkbox" id="vpn" name="security" value="vpn">
+                            <label for="vpn">VPN</label><br>
+                            <input type="checkbox" id="ids" name="security" value="ids">
+                            <label for="ids">Система обнаружения вторжений</label>
+                        </div>
+                        
+                        <button type="submit">Отправить ответы</button>
+                    </form>
+                </section>
+                
+                <section id="calculator" class="calculator">
+                    <h2>Калькулятор дней</h2>
+                    <p>До защиты диплома осталось:</p>
+                    <p id="days-remaining" style="font-size: 1.5em; color: #4CAF50;"></p>
+                    
+                    <h3>Калькулятор дней между датами</h3>
+                    <label for="start-date">Начальная дата:</label>
+                    <input type="date" id="start-date">
+                    
+                    <label for="end-date">Конечная дата:</label>
+                    <input type="date" id="end-date">
+                    
+                    <button onclick="calculateDays()">Рассчитать</button>
+                    
+                    <p id="result" style="margin-top: 10px;"></p>
+                </section>
+            </main>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 Красноярский ГАУ. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Логин и защита контента
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const birthday = document.getElementById('birthday').value;
+            
+            // Сохраняем данные пользователя
+            localStorage.setItem('username', username);
+            localStorage.setItem('birthday', birthday);
+            localStorage.setItem('loggedIn', 'true');
+            
+            // Показываем контент
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('content-section').classList.remove('hidden');
+            
+            // Обновляем приветствие
+            updateGreeting();
+            
+            // Обновляем счетчик посещений
+            updateVisitCounter();
+            
+            // Рассчитываем дни до события
+            calculateDaysToEvent();
+        });
+        
+        // Проверяем, авторизован ли пользователь при загрузке страницы
+        window.onload = function() {
+            if (localStorage.getItem('loggedIn') === 'true') {
+                document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('content-section').classList.remove('hidden');
+                updateGreeting();
+                updateVisitCounter();
+                calculateDaysToEvent();
+            }
+        };
+        
+        // Функция выхода (смены пользователя)
+        function logout() {
+            // Очищаем данные пользователя
+            localStorage.removeItem('username');
+            localStorage.removeItem('birthday');
+            localStorage.removeItem('loggedIn');
+            
+            // Сбрасываем форму входа
+            document.getElementById('login-form').reset();
+            
+            // Показываем форму входа и скрываем контент
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('content-section').classList.add('hidden');
+        }
+        
+        // Функция обновления приветствия
+        function updateGreeting() {
+            const username = localStorage.getItem('username');
+            const birthday = localStorage.getItem('birthday');
+            
+            if (!username) return;
+            
+            const now = new Date();
+            const hours = now.getHours();
+            let greeting;
+            
+            if (hours < 6) greeting = 'Доброй ночи';
+            else if (hours < 12) greeting = 'Доброе утро';
+            else if (hours < 18) greeting = 'Добрый день';
+            else greeting = 'Добрый вечер';
+            
+            // Добавляем возраст, если есть дата рождения
+            let ageMessage = '';
+            if (birthday) {
+                const birthDate = new Date(birthday);
+                const age = now.getFullYear() - birthDate.getFullYear();
+                
+                // Проверяем, был ли уже день рождения в этом году
+                if (now.getMonth() < birthDate.getMonth() || 
+                    (now.getMonth() === birthDate.getMonth() && now.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                
+                ageMessage = ` Вам ${age} лет.`;
+            }
+            
+            document.getElementById('greeting').innerHTML = `<strong>${greeting}, ${username}!${ageMessage}</strong>`;
+        }
+        
+        // Функция обновления счетчика посещений
+        function updateVisitCounter() {
+            let visits = localStorage.getItem('visits');
+            
+            if (!visits) {
+                visits = 1;
+            } else {
+                visits = parseInt(visits) + 1;
+            }
+            
+            localStorage.setItem('visits', visits);
+            document.getElementById('visit-counter').textContent = visits;
+        }
+        
+        // Функция расчета дней до события (защита диплома)
+        function calculateDaysToEvent() {
+            const eventDate = new Date('2025-06-15'); // Дата защиты диплома
+            const today = new Date();
+            
+            // Устанавливаем время на 00:00:00 для точного расчета дней
+            today.setHours(0, 0, 0, 0);
+            eventDate.setHours(0, 0, 0, 0);
+            
+            const diffTime = eventDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('days-remaining').textContent = diffDays + ' дней';
+        }
+        
+        // Функция расчета дней между датами
+        function calculateDays() {
+            const startDate = new Date(document.getElementById('start-date').value);
+            const endDate = new Date(document.getElementById('end-date').value);
+            
+            if (!startDate || !endDate || isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+                document.getElementById('result').textContent = 'Пожалуйста, выберите обе даты';
+                return;
+            }
+            
+            if (startDate > endDate) {
+                document.getElementById('result').textContent = 'Начальная дата должна быть раньше конечной';
+                return;
+            }
+            
+            const diffTime = endDate - startDate;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('result').textContent = `Между датами прошло ${diffDays} дней`;
+        }
+        
+        // Обработка опроса
+        document.getElementById('survey-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const networkType = document.querySelector('input[name="network-type"]:checked')?.value || 'не указано';
+            const networkSize = document.getElementById('network-size').value;
+            const securityFeatures = [];
+            
+            document.querySelectorAll('input[name="security"]:checked').forEach(function(checkbox) {
+                securityFeatures.push(checkbox.value);
+            });
+            
+            alert(`Спасибо за участие в опросе!\n\nВаши ответы:\n1. Тип сети: ${networkType}\n2. Размер сети: ${networkSize}\n3. Функции безопасности: ${securityFeatures.join(', ') || 'не выбрано'}`);
+        });
+    </script>
+</body>
+</html>

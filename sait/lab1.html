@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная 1: Поиск научной информации</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Анализ научных статей по проектированию сетей</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="lab1.html">Лабораторная 1</a></li>
+            <li><a href="lab2.html">Лабораторная 2</a></li>
+        </ul>
+    </nav>
+	<div class="container">
+    <aside>
+        <h3>Содержание</h3>
+        <ul>
+            <li><a href="#databases">Базы данных</a></li>
+            <li><a href="#articles">Статьи</a></li>
+            <li><a href="#conclusions">Выводы</a></li>
+        </ul>
+    </aside>
+    <main>
+        <section id="databases">
+            <h2>Использованные базы данных</h2>
+            <p>Для поиска информации были выбраны следующие источники:</p>
+            <table>
+                <tr>
+                    <th>База данных</th>
+                    <th>Количество статей</th>
+                    <th>Доступность</th>
+                </tr>
+                <tr>
+                    <td>eLibrary (Россия)</td>
+                    <td>~150</td>
+                    <td>80% (требуется подписка)</td>
+                </tr>
+                <tr>
+                    <td>CyberLeninka</td>
+                    <td>~90</td>
+                    <td>100% открытый доступ</td>
+                </tr>
+                <tr>
+                    <td>IEEE Xplore</td>
+                    <td>~500</td>
+                    <td>30% открытый доступ</td>
+                </tr>
+            </table>
+            <p><em>Примечание:</em> Scopus использовался для анализа цитируемости.</p>
+        </section>
+
+        <section id="articles">
+            <h2>Ключевые статьи</h2>
+            <div class="article">
+                <h3>«Этапы проектирования корпоративных сетей»</h3>
+                <p><strong>Автор:</strong> Кургалин С.Н. (2019)</p>
+                <p><strong>Аннотация:</strong> Статья систематизирует этапы проектирования: планирование топологии, выбор оборудования, тестирование.</p>
+                <p><em>Цитируемость:</em> 2 ссылки (РИНЦ).</p>
+            </div>
+            <div class="article">
+                <h3>«Проектирование защищенной корпоративной сети»</h3>
+                <p><strong>Автор:</strong> Александров Г.Д. (2018)</p>
+                <p><strong>Аннотация:</strong> Описаны методы защиты с использованием VLAN и межсетевых экранов.</p>
+                <p><em>Цитируемость:</em> 8 ссылок (РИНЦ).</p>
+            </div>
+        </section>
+
+        <section id="conclusions">
+            <h2>Выводы</h2>
+            <ul>
+                <li>eLibrary и CyberLeninka критически важны для анализа российского опыта.</li>
+                <li>IEEE Xplore и SpringerLink содержат актуальные международные исследования.</li>
+                <li><strong>Тренды:</strong> SDN, IoT, кибербезопасность.</li>
+            </ul>
+        </section>
+    </main>
+	</div>
+    <footer>
+        <p>© 2024 Красноярский ГАУ. Кафедра ИТиМОИС.</p>
+    </footer>
+</body>
+</html>
